@@ -63,15 +63,16 @@
 
       	- Request:
       	```
-
-  {
-  "status" : "TAKEN"
-  }
-
-  ```
+        {
+            "status" : "TAKEN"
+        }
+        ```
 
   - Responsw:
     `{ "status": "SUCCESS" }`
+
+  ```
+
   ```
 
 ## Folder Structure
