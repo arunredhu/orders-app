@@ -1,4 +1,5 @@
 const { validate } = require("jsonschema");
+const mongoose = require("mongoose");
 
 const { APIError } = require("../../shared/utils");
 const { ordersService } = require("../services");
@@ -29,6 +30,12 @@ const validateUpdateOrderRequest = (req, res, next) => {
 
   if (!valid) {
     throw new APIError("INVALID_PARAMETERS", 400);
+  }
+
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new APIError("Invalid order id", 400);
   }
 
   next();

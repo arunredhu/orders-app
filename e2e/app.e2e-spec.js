@@ -115,7 +115,6 @@ describe("/POST orders", () => {
       });
   });
 
-  //This needs to be fixed - error code is coming as Unknown_Error
   it("should return error because of invalid destination coordinates", done => {
     chai
       .request(server)
@@ -125,13 +124,12 @@ describe("/POST orders", () => {
         destination: ["28.6756", "7"]
       })
       .end((err, res) => {
-        expect(res).to.have.status(500);
+        expect(res).to.have.status(400);
         expect(res.body.error).to.be.equal("ZERO_RESULTS");
         done();
       });
   });
 
-  //This needs to be fixed - error code is coming as Unknown_Error
   it("should return error because of invalid source coordinates", done => {
     chai
       .request(server)
@@ -141,13 +139,12 @@ describe("/POST orders", () => {
         destination: ["28.6756", "7"]
       })
       .end((err, res) => {
-        expect(res).to.have.status(500);
+        expect(res).to.have.status(400);
         expect(res.body.error).to.be.equal("NOT_FOUND");
         done();
       });
   });
 
-  //This needs to be fixed - error code is coming as Unknown_Error
   it("should return error because of invalid source & destination coordinates", done => {
     chai
       .request(server)
@@ -157,7 +154,7 @@ describe("/POST orders", () => {
         destination: ["2888.6756", "7"]
       })
       .end((err, res) => {
-        expect(res).to.have.status(500);
+        expect(res).to.have.status(400);
         expect(res.body.error).to.be.equal("NOT_FOUND");
         done();
       });
@@ -285,7 +282,6 @@ describe("GET /", () => {
       });
   });
 
-  // This test is failing, please check why are we throwing 500 if the page num=0
   it("should return error due to page num = 0", done => {
     chai
       .request(server)
@@ -309,7 +305,6 @@ describe("GET /", () => {
       });
   });
 
-  //New Tests
   it("should return only 0 order, with limit as 0", done => {
     chai
       .request(server)

@@ -19,7 +19,7 @@ const calcDistance = async (origins, destinations) => {
 
   // check the overall status of the directions api
   if (jsonValue.status !== "OK") {
-    throw new APIError(jsonValue.status);
+    throw new APIError(jsonValue.status, 400);
   }
 
   // parsing the response
@@ -28,7 +28,7 @@ const calcDistance = async (origins, destinations) => {
 
   // check the response for the particular element
   if (element.status !== "OK") {
-    throw new APIError(element.status);
+    throw new APIError(element.status, 400);
   }
 
   return element.distance;
