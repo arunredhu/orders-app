@@ -76,7 +76,7 @@ describe("Orders - Distance service", () => {
         reqData.destination
       ).catch(e => {
         expect(e.message).to.equal("ZERO_RESULTS");
-        expect(e.status).to.equal(500);
+        expect(e.status).to.equal(400);
       });
     });
 
