@@ -8,7 +8,7 @@ COPY package.json /usr/src/
 COPY package-lock.json /usr/src/
 
 RUN npm install -g pm2 --silent
-RUN npm install --silent --production
+RUN npm install --silent
 
 COPY . /usr/src/
 

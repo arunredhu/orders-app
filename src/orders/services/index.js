@@ -1,5 +1,5 @@
-const distanceService = require("./distance");
-const ordersService = require("./orders");
+const distanceService = require("./distance/distance");
+const ordersService = require("./orders/orders");
 
 module.exports = {
   distanceService,

@@ -4,10 +4,11 @@
   "description": "Orders API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pm2 start ./index.js --no-daemon",
     "dev": "nodemon ./index.js",
-    "debug": "nodemon --inspect ./index.js"
+    "debug": "nodemon --inspect ./index.js",
+    "test": "mocha ./src/**/*.spec.js",
+    "e2e": "mocha ./e2e/**/*.e2e-spec.js --timeout 30000"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,11 @@
     "winston": "^3.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.6"
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.6",
+    "sinon": "^7.1.1",
+    "supertest": "^3.3.0"
   }
 }

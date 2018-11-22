@@ -35,6 +35,13 @@ const validateListOrdersRequest = (req, res, next) => {
     throw new APIError("INVALID_PARAMETERS", 400);
   }
 
+  const { page, limit } = req.query;
+
+  // page and limit shoud be greater than zero
+  if (page <= 0 || limit <= 0) {
+    throw new APIError("INVALID_PARAMETERS", 400);
+  }
+
   next();
 };
 

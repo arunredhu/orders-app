@@ -1,0 +1,122 @@
+swagger: '2.0'
+info:
+  description: Order API
+  version: 1.0.0
+  title: Order API
+  contact:
+    email: xxx.xxx@xxx.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'localhost:8080'
+basePath: '/'
+tags:
+  - name: Orders
+    description: Order Management 
+schemes:
+  - http
+paths:
+  '/orders':
+    post:
+      tags:
+        - orders
+      summary: Create a new order and returns back an order id, order status and distance between the source and destination
+      description: Create a new order
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Orders'
+      responses:
+        '400':
+          description: Invalid parameters
+        '500':
+          description: Internal Server Error
+        '200':
+          description: Successful order creation
+  '/order/:id':
+    patch:
+      tags:
+        - orders
+      summary: Updates an order's status from UNASSIGNED to TAKEN
+      description: Updates an order's status from UNASSIGNED to TAKEN
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: BSON id
+          description: The id of an order
+        - in: body
+          name: body
+          description: JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/OrderUpdate'
+      responses:
+        '409':
+          description: Order not available in system
+        '400':
+          description: Invalid Parameters
+        '200':
+            description: Order taken successfully 
+  '/order/:page&limit':
+  patch:
+    tags:
+      - orders
+    summary: Retrieves orders
+    description: Retrieves orders
+    parameters:
+      - name: page
+        in: path
+        required: true
+        type: string
+        format: BSON id
+        description: Any specified page number
+    - name: limit
+        in: path
+        required: true
+        type: string
+        format: BSON id
+        description: Any specified limit on number of orders to get
+      - in: body
+        name: body
+        description: JSON object
+        required: true
+        schema:
+          $ref: '#/definitions/OrderUpdate'
+    responses:
+      '400':
+        description: Invalid Parameters
+      '200':
+        description: Successfull retrieval of orders
+definitions:
+  Orders:
+    type: object
+    required:
+      - origin
+      - destination
+    properties:
+      origin:
+        type: array
+        items:
+          $ref: '#/definitions/ObjectSchemaDefinition'
+      destination:
+        type: array
+        items:
+          $ref: '#/definitions/ObjectSchemaDefinition'
+  OrderUpdate:
+    type: object
+    properties:
+      status:
+        type: string
+        description: Order status
+        enum:
+          - TAKEN
+          - UNASSIGN

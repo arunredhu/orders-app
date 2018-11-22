@@ -1,5 +1,5 @@
-const { mapsClient } = require("../../shared/services");
-const { APIError } = require("../../shared/utils");
+const { mapsClient } = require("../../../shared/services");
+const { APIError } = require("../../../shared/utils");
 
 /**
  * @description Calculate the distance based on the origins and destinations

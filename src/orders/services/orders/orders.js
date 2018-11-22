@@ -1,7 +1,7 @@
-const { APIError } = require("../../shared/utils");
-const { calcDistance } = require("./distance");
-const { orderStatus } = require("../config");
-const { Order } = require("../models");
+const { APIError } = require("../../../shared/utils");
+const distanceService = require("../distance/distance");
+const { orderStatus } = require("../../config");
+const { Order } = require("../../models");
 
 /**
  * @description Create the new order
@@ -9,7 +9,7 @@ const { Order } = require("../models");
  * @param {*} destination
  */
 const createOrder = async (origin, destination) => {
-  const result = await calcDistance(origin, destination);
+  const result = await distanceService.calcDistance(origin, destination);
 
   const order = {
     distance: result.value,
@@ -17,6 +17,8 @@ const createOrder = async (origin, destination) => {
     origin,
     destination
   };
+
+  console.log(JSON.stringify(order));
 
   return await Order.create(order);
 };
@@ -36,7 +38,7 @@ const updateOrderStatus = async (orderId, currentStatus, updatedStatus) => {
 
   // Throw the error in case query doen't match with any document
   if (!updatedDoc) {
-    throw new APIError("Order not available for update", 404);
+    throw new APIError("Order not available for update", 409);
   }
 
   return updatedDoc;
