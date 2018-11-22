@@ -34,8 +34,8 @@
 ## How to run automated tests (integration & unit tests) from CLI (Command Line Interface) or Terminal
 
 - After starting the project with `docker-compose up`, run:
-  1. Interation tests: `docker exec -it app npm test test/integrationTest.js`
-  2. Unit tests: `docker exec -it a[[ npm test test/unitTest.js`
+  1. Interation tests: `docker exec -it app npm run e2e`
+  2. Unit tests: `docker exec -it app npm test`
 
 ## API Reference Documentation
 
