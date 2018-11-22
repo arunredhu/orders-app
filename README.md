@@ -41,70 +41,83 @@
 
 - **GET** `/orders?page=:page&limit=:limit`: Fetch paginated orders
 
-  - Response :
-    `[ { "distance": 1199398, "status": "TAKEN", "id": "5bebba7c1c2c2d001c3e92f3" }, { "distance": 2000, "status": "UNASSIGNED", "id": "5bebba7c1c2c2d001c3e92f1" }, ]`
+   - Response:
+      ```
+      [
+        {
+          distance: 1199398,
+          status: "TAKEN",
+          id: "5bebba7c1c2c2d001c3e92f3"
+        },
+        {
+          distance: 2000,
+          status: "UNASSIGNED",
+          id: "5bebba7c1c2c2d001c3e92f1"
+        }
+      ]
+      ```
 
 - **POST** `/orders`: Create a new order
 
-      	- Request:
-      	```
-
-  {
-  "origin" :["28.704060", "77.102493"],
-  "destination" :["28.535517", "77.391029"]
-  }
-
-  ```
-
-  - Response:
-    `{ "id": "5bebcf381c2c2d001c3e92f4", "distance": 1071, "status": "UNASSIGNED" }`
-
-  ```
+   - Request:
+      ```
+      {
+          origin: ["28.704060", "77.102493"],
+          destination: ["28.535517", "77.391029"]
+      }
+      ```
+   - Response:
+      ```
+      { 
+         id: "5bebcf381c2c2d001c3e92f4", 
+         distance: 1071, 
+         status: "UNASSIGNED" 
+      }
+      ```
 
 - **PATCH** `/orders/:id`: Update the status of a particular order using it's id
 
-      	- Request:
-      	```
-        {
-            "status" : "TAKEN"
-        }
-        ```
+   - Request:
+      ```
+      {
+          "status": "TAKEN"
+      }
+      ```
 
-  - Responsw:
-    `{ "status": "SUCCESS" }`
-
-  ```
-
-  ```
-
+  - Response:
+      ```
+      {
+         "status": "SUCCESS"
+      }
+      ```
+   
 ## Folder Structure
 
 **/src/orders/config**
 
-- Includesthe project specific constants and configurations.
+- Includes the project specific constants and configurations.
 
 **/src/orders**
 
 - Separate orders folder to maintain modularity of code.
 - **`controllers`** contains order related controllers to control basic flow of order related functionalities
 - **`models`** has the model definition of orders.
-- **`services`** has the srevice defintions for order management.
-- **`index.js`** is what builds and configures the express app
-- **`order-routes`** is what has the project specific routes
+- **`services`** has the service defintions for order management.
+- **`order-routes`** is what has the order specific routes
 
 **/src/shared/services**
 
-- **`maps-client.js`** has functionality for google calculate distance api.
+- **`maps-client.js`** has functionality for google map api.
 - **`db-connection.js`** contains functions for managing mongoose database connections.
 
 **/src/shared/utils**
 
 - **`error-handler.js`** contains functions for handling error routes, managing error logging, parsing error and sending error to the client.
-- **`api-error.js`** contains function for handling an API internal server error.
+- **`api-error.js`** class that is used to throw the custom error throught the application
 
-**/test**
+**/e2e**
 
-- Has the automated integration and unit test cases, which can be run to verify the project.
+- Has the automated integration tests which can be run to verify the project.
 
 **/app.js**
 
