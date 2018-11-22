@@ -1,0 +1,19 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": false,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "off"
+  }
+}
