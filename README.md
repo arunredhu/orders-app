@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/arunredhu/orders-app.svg?branch=master)](https://travis-ci.org/arunredhu/orders-app)
+
 # Orders-app
 
 ## This application exposes API's for creating, updating and listing orders.
