@@ -43,7 +43,7 @@ dbConnection
     console.log("Db connected");
   })
   .catch(e => {
-    console.log(e);
+    console.log("Error in connecting to database");
   });
 
 bootstrapApp(app);

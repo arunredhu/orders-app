@@ -18,8 +18,6 @@ const createOrder = async (origin, destination) => {
     destination
   };
 
-  console.log(JSON.stringify(order));
-
   return await Order.create(order);
 };
 

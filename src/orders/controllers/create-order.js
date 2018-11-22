@@ -64,7 +64,6 @@ const createOrder = async (req, res, next) => {
     });
 
   if (result) {
-    console.log(JSON.stringify(result));
     const { id, distance, status } = result;
     res.send({
       id,
